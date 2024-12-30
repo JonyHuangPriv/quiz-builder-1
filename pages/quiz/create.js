@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabaseClient';
+import { useTranslation } from 'react-i18next';
 
 const CreateQuiz = () => {
+  const { t, i18n } = useTranslation();
   const [title, setTitle] = useState('');
   const [questions, setQuestions] = useState([{ question: '', answers: ['', '', '', ''], correct: 0 }]);
   const [error, setError] = useState(null);
@@ -44,9 +46,6 @@ const CreateQuiz = () => {
       },
     ]);
   
-    // Debugging logs
-    console.log('Insert Result:', { data, error });
-  
     setLoading(false);
   
     if (error) {
@@ -55,15 +54,20 @@ const CreateQuiz = () => {
       window.location.href = '/dashboard'; // Redirect to dashboard on success
     }
   };
-  
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <form className="bg-white p-6 rounded shadow-md w-full max-w-lg" onSubmit={handleSubmit}>
-        <h2 className="text-xl mb-4">Create Quiz</h2>
+        <h2 className="text-xl mb-4">{t('createQuiz')}</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
         <input
           type="text"
-          placeholder="Quiz Title"
+          placeholder={t('quizTitle')}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="block w-full mb-4 p-2 border"
@@ -72,7 +76,7 @@ const CreateQuiz = () => {
           <div key={index} className="mb-4">
             <input
               type="text"
-              placeholder="Question"
+              placeholder={t('question')}
               value={q.question}
               onChange={(e) => updateQuestion(index, 'question', e.target.value)}
               className="block w-full mb-2 p-2 border"
@@ -81,7 +85,7 @@ const CreateQuiz = () => {
               <input
                 key={ai}
                 type="text"
-                placeholder={`Answer ${ai + 1}`}
+                placeholder={`${t('answer')} ${ai + 1}`}
                 value={answer}
                 onChange={(e) => {
                   const updatedAnswers = [...q.answers];
@@ -98,17 +102,20 @@ const CreateQuiz = () => {
             >
               {q.answers.map((_, ai) => (
                 <option key={ai} value={ai}>
-                  Correct Answer {ai + 1}
+                  {t('correctAnswer')} {ai + 1}
                 </option>
               ))}
             </select>
           </div>
         ))}
         <button type="button" onClick={addQuestion} className="bg-gray-500 text-white p-2 rounded w-full mb-4">
-          Add Question
+          {t('addQuestion')}
         </button>
         <button type="submit" className={`bg-blue-500 text-white p-2 rounded w-full ${loading ? 'opacity-50' : ''}`} disabled={loading}>
-          {loading ? 'Saving...' : 'Save Quiz'}
+          {loading ? t('saving') : t('saveQuiz')}
+        </button>
+        <button type="button" onClick={toggleLanguage} className="mt-4 bg-green-500 text-white p-2 rounded w-full">
+          {i18n.language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
         </button>
       </form>
     </div>

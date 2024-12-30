@@ -1,0 +1,10 @@
+{
+    "createQuiz": "Create Quiz",
+    "quizTitle": "Quiz Title",
+    "question": "Question",
+    "answer": "Answer",
+    "correctAnswer": "Correct Answer",
+    "addQuestion": "Add Question",
+    "saveQuiz": "Save Quiz",
+    "saving": "Saving..."
+  }

@@ -1,0 +1,10 @@
+{
+    "createQuiz": "إنشاء اختبار",
+    "quizTitle": "عنوان الاختبار",
+    "question": "سؤال",
+    "answer": "إجابة",
+    "correctAnswer": "الإجابة الصحيحة",
+    "addQuestion": "إضافة سؤال",
+    "saveQuiz": "حفظ الاختبار",
+    "saving": "جارٍ الحفظ..."
+  }
