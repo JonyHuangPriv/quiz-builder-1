@@ -24,6 +24,11 @@ self.__BUILD_MANIFEST = {
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/dashboard.js"
+    ],
+    "/quiz/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/quiz/[id].js"
     ]
   },
   "ampFirstPages": []
