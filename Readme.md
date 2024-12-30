@@ -15,7 +15,7 @@ Quiz Builder is a simple application that allows users to create, manage, and ta
 To install Quiz Builder, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/JonyHuangPriv/quiz-builder.git
+git clone https://github.com/JonyHuangPriv/quiz-builder-1.git
 cd quiz-builder
 npm install
 ```
